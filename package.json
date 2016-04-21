@@ -1,0 +1,15 @@
+{
+  "name": "comparative",
+  "version": "1.0.0",
+  "main": "plagin.js",
+  "dependencies": {
+    "postcss": "5.0.19",
+    "postcss-discard-duplicates": "^2.0.1",
+    "postcss-merge-rules": "2.0.6",
+    "postcss-unique-selectors": "2.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "Mokoshka",
+  "license": "ISC"
+}
