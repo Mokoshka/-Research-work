@@ -43,6 +43,7 @@ function getDataOfPull(pull) {
         .then(pullData => {
             data.name = pullData.title;
             data.author = pullData.user.login;
+            data.pr = pullData.html_url;
 
             return request(pullData.url + '/files')
         })
@@ -56,7 +57,7 @@ function getDataOfPull(pull) {
         })
         .then(file => {
             if (file) {
-                return request(file.download_url);
+                return request(file.download_url)
             }
         })
         .then(css => {

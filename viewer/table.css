@@ -16,8 +16,21 @@
 /*==================== HEAD ==========================*/
 .result-table thead td
 {
-    -webkit-transform: rotate(-90deg) translateX(-31px);
     max-width: 3em;
+}
+
+thead a {
+    display: inline-flex;
+    align-items: center;
+    min-width: 120px;
+    min-height: 3em;
+    transform-origin: left top;
+    -webkit-transform: rotate(-90deg) translateX(-70%);
+}
+
+.result-table p {
+    padding: 0;
+    margin: 0;
 }
 
 .result-table thead tr
@@ -71,4 +84,14 @@
     background-color: #0052d4 !important;
 }
 
+.result-table td a {
+    text-decoration: none;
+    color: #000;
+}
 
+tbody a {
+    display: flex;
+    align-items: center;
+    height: 2em;
+    width: 120px;
+}

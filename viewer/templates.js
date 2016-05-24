@@ -7,8 +7,8 @@ const getNames = (data) => {
     let names = [];
     data.forEach(obj => {
         obj.pair.forEach(p => {
-            if(names.indexOf(p) < 0) {
-                names.push(p);
+            if (names.findIndex(name => p === name.name) < 0) {
+                names.push({name: p, url: obj.urls[obj.pair.indexOf(p)]});
             }
         })
     });
@@ -51,12 +51,10 @@ const toMatrix = (data, names) => {
     }
 
     data.forEach(obj => {
-        let firstIndex = names.indexOf(obj.pair[0]);
-        let secondIndex = names.indexOf(obj.pair[1]);
-
-        if (obj.pair[0] === 'Сорокин Владимир' || obj.pair[1] === 'Сорокин Владимир') {
-            //console.log(firstIndex, secondIndex);
-        }
+        //let firstIndex = names.indexOf(obj.pair[0]);
+        let firstIndex = names.findIndex(name => obj.pair[0] === name.name);
+        let secondIndex = names.findIndex(name => obj.pair[1] === name.name);
+        //let secondIndex = names.indexOf(obj.pair[1]);
 
         matrix[firstIndex][secondIndex] = obj.similarity;
         matrix[secondIndex][firstIndex] = obj.similarity;
@@ -77,7 +75,7 @@ const thead = `<thead>
     <tr>
         <td></td>
         {{#each names}}
-            <td>{{ this }}</td>
+            <td><a href="{{ url }}" target="_blank">{{ name }}</a></td>
         {{/each}}
     </tr>
 </thead>\n`;
@@ -87,7 +85,7 @@ const table = `<table class="result-table">
     <tbody>
         {{#each names}}
             <tr>
-                <td>{{ this }}</td>
+                <td><a href="{{ url }}">{{ name }}</a></td>
                 {{{line ../matrix @index}}}
             </tr>
         {{/each }}

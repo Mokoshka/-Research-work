@@ -52,7 +52,8 @@ function checkAllFiles(solutions, limit) {
             statistic.add({
                 pair: [solution.name, solutions[i].name],
                 similarity,
-                suspicion: similarity > limit
+                suspicion: similarity > limit,
+                urls: [solution.pr, solutions[i].pr]
             });
 
             if (similarity > limit) {
@@ -75,7 +76,6 @@ function checkSuspicions(solutions) {
 
         let solution1 = solutions.find(solution => {return solution.name === pair.pair[0]});
         let solution2 = solutions.find(solution => {return solution.name === pair.pair[1]});
-        //console.log(index1, index2);
         pair.similarity = cssworker.checkPair(solution1.css, solution2.css);
     });
 }
@@ -90,7 +90,6 @@ const isSuitable = new Function('similarity', `return similarity > ${condition}`
 git.getCssFiles(args._[0])
     .then(results => {
         results = results.map(solution => {
-            //fs.writeFile(`./${args._[0]}/${solution.name}.css`, solution.css);
             return cssworker.getFirstHash(solution);
         });
 

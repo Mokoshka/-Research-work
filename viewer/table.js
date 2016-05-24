@@ -22,11 +22,11 @@ function resetPaint(index) {
 
 function setOver(td) {
     td.addEventListener('mouseover', function() {
-        paintColumn(Array.prototype.slice.call(td.parentNode.childNodes, 0).indexOf(td));
+        paintColumn(Array.prototype.slice.call(td.parentNode.children, 0).indexOf(td));
     });
 
     td.addEventListener('mouseout', function() {
-        resetPaint(Array.prototype.slice.call(td.parentNode.childNodes, 0).indexOf(td));
+        resetPaint(Array.prototype.slice.call(td.parentNode.children, 0).indexOf(td));
     })
 }
 
